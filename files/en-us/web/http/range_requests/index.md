@@ -16,7 +16,7 @@ An HTTP range request asks the server to send only a portion of an HTTP message 
 If an HTTP response includes the {{HTTPHeader("Accept-Ranges")}} header and its value is anything other than "`none`", then the server supports range requests. You can perform a manual check by issuing a {{HTTPMethod("HEAD")}} request with a tool like cURL.
 
 ```bash
-curl -I http://i.imgur.com/z4d4kWk.jpg
+curl -I https://i.imgur.com/z4d4kWk.jpg
 ```
 
 ```http
@@ -51,7 +51,7 @@ If the server supports range requests, then by including the {{HTTPHeader("Range
 We can request a single range from a resource. Again, we can test a request by using cURL. The "`-H`" option will append a header line to the request, which in this case is the `Range` header requesting the first 1024 bytes.
 
 ```bash
-curl http://i.imgur.com/z4d4kWk.jpg -i -H "Range: bytes=0-1023"
+curl https://i.imgur.com/z4d4kWk.jpg -i -H "Range: bytes=0-1023"
 ```
 
 The issued request looks like this:
@@ -79,7 +79,7 @@ The {{HTTPHeader("Content-Length")}} header now indicates the size of the reques
 The {{HTTPHeader("Range")}} header also allows you to get multiple ranges at once in a multipart document. The ranges are separated by a comma.
 
 ```bash
-curl http://www.example.com -i -H "Range: bytes=0-50, 100-150"
+curl https://www.example.com -i -H "Range: bytes=0-50, 100-150"
 ```
 
 The server responses with the {{HTTPStatus("206")}} `Partial Content` status and a {{HTTPHeader("Content-Type")}}`: multipart/byteranges; boundary=3d6b6a416f9b5` header, indicating that a multipart byterange follows. Each part contains its own `Content-Type` and `Content-Range` fields and the required boundary parameter specifies the boundary string used to separate each body-part.
